@@ -1,0 +1,285 @@
+\documentclass{report}
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+\usepackage{blkarray}
+
+
+\title{\Huge{TATA24}\\ Gauselimination}
+\author{\huge{Axel Glöckner}}
+\date{\today}
+\begin{document}
+\maketitle
+
+
+\dfn{Linjära ekvationssystem}{
+	\begin{align*}
+		a_1x_1 + a_2x_2 + \ldots + a_nx_n & =b &  & a_1\ldots a_n, b \in R \\
+	\end{align*}
+}
+
+\nt{
+	\begin{align*}
+		x + 2y -3z & = 17, & \textbf{linjär}      \\
+		x^2 + 3    & = y,  & \textbf{icke linjär} \\
+	\end{align*}
+}
+
+\ex{Gauselimination}{
+	\begin{cases}
+		x + y + 2z = 2, & \ {-4} / {-3} \to \text{ekv}_2 / \text{ekv}_3 \\
+		4x + 6y + 10z = 14                                              \\
+		3x + 4y + 9z = 13
+	\end{cases}
+	\Leftrightarrow &
+	\begin{cases}
+		x + y + 2z = 2                            \\
+		0 + 2y + 2z = 6, & {1/2} \to \text{ekv}_3 \\
+		0 + y + 3z = 7
+	\end{cases}
+	\\ \\ \\
+	\Leftrightarrow &
+	\begin{cases}
+		x + y + 2z = 2 \\
+		0 + y + z = 3  \\
+		0 + 0 + 2z = 4
+	\end{cases}
+	\Leftrightarrow &
+	\begin{cases}
+		x = -3 \\
+		y = 1  \\
+		z = 2
+	\end{cases}
+}
+
+\ex{Gauselimination syntax}{
+\begin{pmatrix}
+    1 & 1 & 2 & 2 \\
+    4 & 6 & 10 & 14 \\
+    3 & 4 & 9 & 13
+\end{pmatrix}
+\begin{array}{l}
+    \text{\circled{-4} \rotatebox[origin=c]{180}{&\Rsh&} and \circled{-3}\rotatebox[origin=c]{180}{&\Rsh&}\rotatebox[origin=c]{180}{&\Rsh&}} \\
+    \text{} \\
+    \text{}
+\end{array}
+\sim \quad
+\begin{pmatrix}
+    1 & 1 & 2 & 2 \\
+    0 & 2 & 2 & 6 \\
+    0 & 1 & 3 & 7
+\end{pmatrix}
+\begin{array}{l}
+    \\
+    \text{\circled{1/2} \rotatebox[origin=c]{180}{&\Rsh&}  } \\
+    \\ 
+\end{array}
+& \sim & \quad
+\begin{pmatrix}
+    1 & 1 & 2 & 2 \\
+    0 & 2 & 2 & 6 \\
+    0 & 0 & 2 & 4 \\
+\end{pmatrix}
+\begin{array}{l}
+    \\
+    \\
+    \\
+\end{array} 
+& \Leftrightarrow \quad
+\begin{cases}
+   x = -3 \\
+   y = 1 \\
+   z = 2\\
+\end{cases}
+}
+
+\dfn{Elementära radoperationer}{
+    \begin{itemize}
+    \item Addera en multipel av en rad till en annan. 
+    \item Multiplicera en rad med en konstan som är \neq 0 
+    \item Byta plats på två rader 
+    \end{itemize}
+  
+}
+
+
+\dfn{}{
+    Trappstegsmatris,
+    \begin{pmatrix}
+        \circled{1} & 1 & 2 & 2 \\
+        0 & \circled{1} & 1 & 3 \\
+        0 & 0 & \circled{2} & 4 \\
+    \end{pmatrix}
+    \quad leder till
+    \begin{cases}
+        \circled{x} + y + 2z &= 2 \\
+        0 + \circled{y} + z &= 3 \\
+        0 + 0 +  \circled{2z} &= 4 
+    \end{cases}
+    \quad \Leftrightarrow
+    \begin{cases}
+        x &= -3 \\
+        y &= 1 \\
+        z &= 2
+    \end{cases}
+    
+    \begin{itemize}
+        \item De inringade elementen kallas för \textbf{Pivotelement}.
+        \item Trappstegsmatris
+            \subitem Eventuella noll-rader står längst ned.
+            \subitem Det förta nollskillda elementet i en rad står längre till höger i rader som står länger ned.
+
+        \item Gauselimination
+            \subitem Utför elementära radoperationer tills man har en trappsstegasmatris. Detta går \textbf{alltid}. 
+    \end{itemize}
+}
+
+\ex{Gauselimination}{  
+    \begin{align*}
+            \begin{cases}
+                x_2 + x_3 &= -2 \\
+                x_1 + 2x_2 + 3x_3 &= -4\\
+                x_1 - 3x_3 &= 0
+            \end{cases}
+    .\end{align*}
+}
+
+\sol{
+    \\ \\ \\
+    \begin{pmatrix}
+        0 & 1 & 3 & -2 \\
+        1 & 2 & 3 & -4 \\
+        1 & 0 & -3 & 0 \\
+    \end{pmatrix}
+    \begin{array}{l}
+        \\
+        \\
+        \text{\circled{-1} & \rotatebox[origin=c]{}{&\Lsh&} }  \\
+    \end{array}
+    \quad \sim & 
+    \begin{pmatrix}
+        0 & 1 & 3 & -2 \\
+        0 & 2 & 6 & -4\\
+        1 & 0 & -3 & 0 \\
+    \end{pmatrix}
+    \begin{array}{l}
+        \text{\circled{-2} \rotatebox[origin=c]{180}{&\Rsh&}}\\
+        \\
+        \\
+    \end{array}
+    \quad \sim &
+    \begin{pmatrix}
+        0 & 1 & 3 & -2 \\
+        0 & 0 & 0 & 0 \\
+        1 & 0 & -3 & 0 \\
+    \end{pmatrix}
+    \begin{array}{l}
+        \updownarrow\\
+        \updownarrow\\
+        \\
+    \end{array}
+    \quad \sim & 
+    \begin{pmatrix}     
+        1 & 0 & -3 & 0 \\
+        0 & 1 & 3 & -2 \\
+        0 & 0 & 0 & 0
+    \end{pmatrix} 
+    \\ \\ \\  \quad Som motsvarar
+    \begin{cases}
+        x_1 - 3x_3 &= 0 \\
+        x_2 + 3x_3 &= 2 \\
+        0 &= 0
+    \end{cases}
+    \quad \Leftrightarrow
+    \begin{cases}
+        x_1 &= 3t \\
+        x_2 &= -2 - 3t \\
+        x_3 &= t 
+    \end{cases}
+    \begin{array}{l}
+        \\
+        \\
+        t \in R
+    \end{array}{}
+    detta kallas för en \textbf{parameterlösning.}
+}
+
+\nt{
+    För lösningsmängden gäller endera av följande, \\ 
+    \begin{array}
+        \text{Unik-lösning} \\ \\
+        \begin{pmatrix}
+            \circled{1} & 2 & -3 & 0\\
+            0 & \circled{2} & 3 & -1 \\
+            0 & 0 & \circled{-2} & 1 \\
+        \end{pmatrix} \\
+        \text{Ett PE i varje kolumn}\\
+        \text{i VL, inget i HL}
+    \end{array}
+    \quad
+    \begin{array}
+        \text{Oändligt många lösningar}\\ \\
+        \begin{pmatrix}
+            \circled{1} & 0 & -3 & 0 \\
+            0 & \circled{1} & 3 & -2 \\
+            0 & 0 & 0 & 0
+        \end{pmatrix}\\
+        \text{Kolumner saknar}\\
+        \text{PE i VL inget iHL}
+    \end{array}
+    \quad 
+    \begin{array}
+        \text{ingen lösning} \\ \\
+        \begin{pmatrix} 
+        \circled{1} & 0 & -3 & 0 \\
+        0 & \circled{1} & 3 & -2 \\
+        0 & 0 & 0 & \circled{-1}
+        \end{pmatrix} 
+        \\
+        \text{PE i HL}        
+    \end{array}
+    }
+        
+    \ex{}{
+    \text{Ange antalet lösningar till,} &
+    \begin{cases}
+        x - ay = 0, &\text{ för alla a \in & R}\\
+        ax - 3ay = 0
+    \end{cases}
+}
+
+\sol{
+    \\ \\
+    \begin{pmatrix}
+        1 & -a & -b \\
+        a & -3a & 0 \\
+    \end{pmatrix}
+    \begin{array}{l}
+        \text{\circled{-a} \rotatebox[origin=c]{180}{&\Rsh&}} \\
+        \\
+    \end{array}
+    \quad \sim &
+    \begin{pmatrix}
+        \circled{1} & -a & 0  \\
+        0 & a^2-3a & -6a\\
+    \end{pmatrix}
+    \quad alltså, & 
+    a^2-3a = 0 \Leftrightarrow 
+    \quad 
+    \begin{cases}
+        a = 0\\
+        a = 3
+    \end{cases}
+    \begin{array}{l}
+        \text{oändligt många lösnignar}\\
+        \text{olösligt}
+    \end{array}{}
+}
+
+\rotatebox[origin=c]{180}{&\Rsh&}
+
+
+
+\end{document}
+
